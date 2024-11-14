@@ -2,6 +2,8 @@ package com.paudam.proyectorepasoandroid1
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
@@ -13,7 +15,7 @@ import com.paudam.proyectorepasoandroid1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     val KEY_CURS = "curs"
-    val rndText = "holahola"
+    var spinnerValue = ""
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,19 @@ class MainActivity : AppCompatActivity() {
             spinner.adapter = adapter
         }
 
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val selectedValue = parent.getItemAtPosition(position).toString()
+                spinnerValue = selectedValue
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                spinnerValue = "No has seleccionado nada"
+            }
+        }
+
+
         //Automatico
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -47,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         //Boton Intent pasa valor a Act2
         binding.butChoseCurs.setOnClickListener {
             //intent amb parametre de curs
-            intent.putExtra(KEY_CURS,rndText)
+            intent.putExtra(KEY_CURS,spinnerValue)
             startActivity(intent)
         }
 
