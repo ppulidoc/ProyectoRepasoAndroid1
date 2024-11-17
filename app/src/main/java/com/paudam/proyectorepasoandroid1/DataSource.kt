@@ -11,4 +11,17 @@ class DataSource {
     fun loadAlumnos(): List<Alumnos> {
         return arrayAlumnos
     }
+
+    // Amb el it.valor filtro a la funcio sobre l'array
+    fun loadAlumnos1(): List <Alumnos> {
+        return arrayAlumnos.filter { it.curso == 1 }
+    }
+
+    fun loadAlumnos2(): List <Alumnos> {
+        return arrayAlumnos.filter { it.curso == 2 }
+    }
+
+    fun loadAlumnos3(): List <Alumnos> {
+        return arrayAlumnos.filter { it.curso == 3 }
+    }
 }
