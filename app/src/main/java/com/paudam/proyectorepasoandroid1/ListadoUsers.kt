@@ -56,5 +56,9 @@ class ListadoUsers : AppCompatActivity() {
         // Pasar la lista de alumnos al adaptador
         val alumnoAdapter = CustomAdapter(arrayAlumnos)
         binding.recyclerview.adapter = alumnoAdapter
+
+        binding.buttonVolver.setOnClickListener {
+            finish()
+        }
     }
 }
